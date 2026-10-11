@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Lumina Joyería · Elegancia atemporal</title>
+  <!-- Google Fonts para un toque fino -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free) para iconos sutiles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ----- RESET & BASE ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #fefcf9;
+      color: #2c241b;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* ----- VARIABLES & UTILIDADES ----- */
+    :root {
+      --gold: #c9a96e;
+      --gold-dark: #a5834b;
+      --cream: #fefcf9;
+      --charcoal: #2c241b;
+      --soft-border: #e8e0d5;
+      --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
+      --shadow-md: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--gold);
+      color: white;
+      padding: 0.9rem 2.2rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 1px solid var(--gold);
+      border-radius: 0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: transparent;
+      color: var(--gold-dark);
+      border-color: var(--gold-dark);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold-dark);
+      border: 1px solid var(--gold-dark);
+    }
+
+    .btn-outline:hover {
+      background: var(--gold-dark);
+      color: white;
+      border-color: var(--gold-dark);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      color: var(--charcoal);
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1rem auto 0;
+    }
+
+    /* ----- HEADER & NAV ----- */
+    header {
+      background-color: var(--cream);
+      border-bottom: 1px solid var(--soft-border);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--charcoal);
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    /* Navegación principal */
+    .main-nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2.2rem;
+    }
+
+    .main-nav a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      padding-bottom: 4px;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .main-nav a:hover {
+      border-bottom-color: var(--gold);
+      color: var(--gold-dark);
+    }
+
+    /* Iconos header (carrito, búsqueda) */
+    .header-icons {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 1.2rem;
+      color: var(--charcoal);
+    }
+
+    .header-icons i {
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .header-icons i:hover {
+      color: var(--gold-dark);
+    }
+
+    /* Menú hamburguesa (oculto en desktop) */
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      color: var(--charcoal);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0 0.5rem;
+    }
+
+    /* ----- HERO ----- */
+    .hero {
+      background: linear-gradient(135deg, #f7f2ea 0%, #fefcf9 100%);
+      padding: 4rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .hero-content {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1 1 300px;
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      color: var(--charcoal);
+      font-weight: 500;
+    }
+
+    .hero-text h1 i {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: #4e443a;
+      max-width: 500px;
+    }
+
+    .hero-image {
+      flex: 1 1 300px;
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .hero-image:hover img {
+      transform: scale(1.02);
+    }
+
+    /* ----- FEATURED / PRODUCTOS ----- */
+    .featured {
+      padding: 4rem 0;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid var(--soft-border);
+      padding: 1.5rem 1.2rem 2rem;
+      text-align: center;
+      transition: box-shadow 0.3s, transform 0.3s;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .product-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-5px);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      background: #f5f0e8;
+      border-radius: 2px;
+    }
+
+    .product-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .product-category {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 0.7rem;
+    }
+
+    .product-price {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 1.4rem;
+    }
+
+    .product-price span {
+      font-size: 0.85rem;
+      color: #8b7b6b;
+      text-decoration: line-through;
+      margin-left: 0.5rem;
+    }
+
+    .product-card .btn {
+      padding: 0.6rem 1.5rem;
+      font-size: 0.7rem;
+    }
+
+    /* ----- COLECCIÓN / BANNER ----- */
+    .collection-banner {
+      background: #f3ede5;
+      padding: 3.5rem 0;
+      margin: 2rem 0;
+    }
+
+    .banner-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .banner-text {
+      flex: 2 1 300px;
+    }
+
+    .banner-text h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--charcoal);
+    }
+
+    .banner-text p {
+      max-width: 600px;
+      color: #4a4037;
+    }
+
+    .banner-cta {
+      flex: 1 1 200px;
+      text-align: right;
+    }
+
+    /* ----- TESTIMONIOS / VALORES ----- */
+    .values {
+      padding: 4rem 0;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2.5rem;
+      text-align: center;
+    }
+
+    .value-item i {
+      font-size: 2.2rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .value-item h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.7rem;
+      font-weight: 600;
+    }
+
+    .value-item p {
+      font-size: 0.9rem;
+      color: #5f554a;
+      max-width: 240px;
+      margin: 0 auto;
+    }
+
+    /* ----- FOOTER ----- */
+    footer {
+      background: #2c241b;
+      color: #e8e0d5;
+      padding: 3rem 0 2rem;
+      font-size: 0.85rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .footer-col h5 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-bottom: 1.4rem;
+      color: #f0e7dc;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 0.7rem;
+    }
+
+    .footer-col a {
+      color: #bcb0a2;
+      transition: color 0.2s;
+      font-weight: 300;
+    }
+
+    .footer-col a:hover {
+      color: var(--gold);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: #bcb0a2;
+      font-size: 1.2rem;
+    }
+
+    .social-links a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #40382f;
+      padding-top: 1.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: #9b8f82;
+      font-size: 0.75rem;
+    }
+
+    /* ----- RESPONSIVE (Mobile & Tablet) ----- */
+    @media screen and (max-width: 900px) {
+      .hero-text h1 {
+        font-size: 2.8rem;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      /* Header y navegación móvil */
+      .header-inner {
+        position: relative;
+      }
+
+      .menu-toggle {
+        display: block;
+        order: 2;
+      }
+
+      .logo {
+        order: 1;
+        font-size: 1.6rem;
+      }
+
+      .header-icons {
+        order: 3;
+        gap: 1.2rem;
+        font-size: 1.1rem;
+      }
+
+      .main-nav {
+        display: none;
+        width: 100%;
+        order: 4;
+        margin-top: 1.2rem;
+        border-top: 1px solid var(--soft-border);
+        padding-top: 1.2rem;
+      }
+
+      .main-nav.active {
+        display: block;
+      }
+
+      .main-nav ul {
+        flex-direction: column;
+        gap: 1.2rem;
+        align-items: center;
+      }
+
+      .main-nav a {
+        font-size: 1rem;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 2.5rem 0;
+      }
+
+      .hero-text h1 {
+        font-size: 2.4rem;
+      }
+
+      .hero-text p {
+        font-size: 1rem;
+      }
+
+      .section-title {
+        font-size: 1.9rem;
+      }
+
+      .banner-text h2 {
+        font-size: 2rem;
+      }
+
+      .banner-cta {
+        text-align: left;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .header-icons i {
+        font-size: 1rem;
+      }
+
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.7rem;
+      }
+
+      .section-title {
+        font-size: 1.7rem;
+      }
+
+      .banner-text h2 {
+        font-size: 1.7rem;
+      }
+    }
+
+    /* Ajustes adicionales para imágenes en grid */
+    .product-img {
+      background: #f1ebe2;
+    }
+
+    /* Pequeño efecto para los iconos */
+    .fa-regular, .fas, .far {
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container header-inner">
+      <div class="logo">Lumi<span>na</span></div>
+
+      <!-- Navegación principal (desktop) -->
+      <nav class="main-nav" id="mainNav">
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Colecciones</a></li>
+          <li><a href="#">Anillos</a></li>
+          <li><a href="#">Collares</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- Iconos y menú hamburguesa -->
+      <div class="header-icons">
+        <i class="fas fa-search" aria-label="Buscar"></i>
+        <i class="far fa-user" aria-label="Cuenta"></i>
+        <i class="fas fa-shopping-bag" aria-label="Carrito"></i>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <h1>Elegancia <i>eterna</i> en cada detalle</h1>
+        <p>Descubre piezas únicas, elaboradas a mano con materiales nobles. Joyas que cuentan tu historia.</p>
+        <a href="#" class="btn">Explorar colección</a>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop" alt="Collar de oro con dije">
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS DESTACADOS -->
+  <section class="featured">
+    <div class="container">
+      <h2 class="section-title">Piezas destacadas</h2>
+      <div class="product-grid">
+        <!-- Producto 1 -->
+        <div class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?q=80&w=600&auto=format&fit=crop" alt="Anillo de diamante">
+          <h3>Anillo Solitario</h3>
+          <div class="product-category">Anillos</div>
+          <div class="product-price">$1,250 <span>$1,490</span></div>
+          <a href="#" class="btn btn-outline">Ver más</a>
+        </div>
+        <!-- Producto 2 -->
+        <div class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?q=80&w=600&auto=format&fit=crop" alt="Collar de oro">
+          <h3>Collar Luna</h3>
+          <div class="product-category">Collares</div>
+          <div class="product-price">$890</div>
+          <a href="#" class="btn btn-outline">Ver más</a>
+        </div>
+        <!-- Producto 3 -->
+        <div class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=600&auto=format&fit=crop" alt="Aretes de perla">
+          <h3>Aretes Perla</h3>
+          <div class="product-category">Aretes</div>
+          <div class="product-price">$420</div>
+          <a href="#" class="btn btn-outline">Ver más</a>
+        </div>
+        <!-- Producto 4 -->
+        <div class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=600&auto=format&fit=crop" alt="Pulsera de oro">
+          <h3>Pulsera Eslabones</h3>
+          <div class="product-category">Pulseras</div>
+          <div class="product-price">$670 <span>$790</span></div>
+          <a href="#" class="btn btn-outline">Ver más</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER COLECCIÓN -->
+  <section class="collection-banner">
+    <div class="container banner-inner">
+      <div class="banner-text">
+        <h2>Colección Aurora</h2>
+        <p>Inspirada en la luz del amanecer, una selección de piezas con gemas en tonos cálidos y acabados artesanales.</p>
+      </div>
+      <div class="banner-cta">
+        <a href="#" class="btn">Descubrir</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALORES / DIFERENCIADORES -->
+  <section class="values">
+    <div class="container">
+      <h2 class="section-title">Nuestra promesa</h2>
+      <div class="values-grid">
+        <div class="value-item">
+          <i class="fas fa-gem"></i>
+          <h4>Materiales nobles</h4>
+          <p>Oro de 18k, plata esterlina y gemas certificadas.</p>
+        </div>
+        <div class="value-item">
+          <i class="fas fa-hand-sparkles"></i>
+          <h4>Hecho a mano</h4>
+          <p>Cada pieza es única, elaborada por artesanos expertos.</p>
+        </div>
+        <div class="value-item">
+          <i class="fas fa-truck"></i>
+          <h4>Envío gratis</h4>
+          <p>En compras superiores a $200. Embalaje de lujo.</p>
+        </div>
+        <div class="value-item">
+          <i class="fas fa-undo-alt"></i>
+          <h4>Devolución 30 días</h4>
+          <p>Garantía de satisfacción sin complicaciones.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h5>Lumina</h5>
+          <p style="color:#bcb0a2; margin-bottom:1rem;">Joyas que iluminan momentos.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Tienda</h5>
+          <ul>
+            <li><a href="#">Anillos</a></li>
+            <li><a href="#">Collares</a></li>
+            <li><a href="#">Aretes</a></li>
+            <li><a href="#">Pulseras</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Ayuda</h5>
+          <ul>
+            <li><a href="#">Envíos</a></li>
+            <li><a href="#">Devoluciones</a></li>
+            <li><a href="#">Guía de tallas</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="#">Términos</a></li>
+            <li><a href="#">Privacidad</a></li>
+            <li><a href="#">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Lumina Joyería. Todos los derechos reservados.</span>
+        <span>Hecho con ♥ para amantes de lo bello</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script para el menú hamburguesa -->
+  <script>
+    (function() {
+      const menuToggle = document.getElementById('menuToggle');
+      const mainNav = document.getElementById('mainNav');
+
+      if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          mainNav.classList.toggle('active');
+          // Cambia el icono entre bars y times
+          const icon = menuToggle.querySelector('i');
+          if (mainNav.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+          } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        });
+
+        // Cierra el menú al hacer clic en un enlace (en móvil)
+        const navLinks = mainNav.querySelectorAll('a');
+        navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+              mainNav.classList.remove('active');
+              const icon = menuToggle.querySelector('i');
+              icon.classList.remove('fa-times');
+              icon.classList.add('fa-bars');
+            }
+          });
+        });
+
+        // Cerrar menú si se redimensiona a desktop
+        window.addEventListener('resize', function() {
+          if (window.innerWidth > 768) {
+            mainNav.classList.remove('active');
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+              icon.classList.remove('fa-times');
+              icon.classList.add('fa-bars');
+            }
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
